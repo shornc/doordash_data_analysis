@@ -89,3 +89,22 @@ SELECT
     (SELECT MIN(Customer_Days) FROM doordash),
     (SELECT MIN(Customer_Days) FROM filtered_doordash);
 
+-- Percentage Income
+
+ALTER TABLE doordash
+ADD COLUMN PctIncome DECIMAL(10,2) AFTER MntTotal;
+
+SELECT * FROM doordash;
+
+UPDATE doordash
+SET PctIncome = (MntTotal/Income)*100;
+
+-- Percentage Income (Cmp6)
+
+ALTER TABLE filtered_doordash
+ADD COLUMN PctIncome DECIMAL(10,2) AFTER MntTotal;
+
+UPDATE filtered_doordash
+SET PctIncome = (MntTotal/Income)*100;
+
+SELECT * FROM filtered_doordash;
